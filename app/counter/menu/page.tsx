@@ -1,22 +1,29 @@
 import Link from "next/link";
 
-const menu = {
+interface Plato {
+  name: string;
+  desc: string;
+  precio: string;
+  nuevo?: boolean;
+}
+
+const menu: { entrantes: Plato[]; principales: Plato[]; postres: Plato[] } = {
   entrantes: [
-    { name: "Tartar de atún rojo", desc: "Aguacate, soja, sésamo tostado y chips de wonton", precio: "18€", nuevo: true },
-    { name: "Croquetas de jamón ibérico", desc: "Bechamel artesanal, jamón de bellota 100%", precio: "12€" },
-    { name: "Burrata con tomate", desc: "Tomate rosa de Barbastro, albahaca fresca, AOVE", precio: "14€" },
-    { name: "Steak tartar clásico", desc: "Solomillo picado a cuchillo, mostaza Dijon, alcaparras", precio: "22€" },
+    { name: "Tartar de atun rojo", desc: "Aguacate, soja, sesamo tostado y chips de wonton", precio: "18", nuevo: true },
+    { name: "Croquetas de jamon iberico", desc: "Bechamel artesanal, jamon de bellota 100%", precio: "12" },
+    { name: "Burrata con tomate", desc: "Tomate rosa de Barbastro, albahaca fresca, AOVE", precio: "14" },
+    { name: "Steak tartar clasico", desc: "Solomillo picado a cuchillo, mostaza Dijon, alcaparras", precio: "22" },
   ],
   principales: [
-    { name: "Risotto de trufa negra", desc: "Arroz carnaroli, parmesano 24 meses, trufa de Soria", precio: "24€", nuevo: true },
-    { name: "Cochinillo confitado", desc: "72h de cocción lenta, puré de manzana, jus de asado", precio: "28€" },
-    { name: "Lubina a la sal", desc: "Lubina salvaje, ensalada de hinojo, vinagreta cítrica", precio: "26€" },
-    { name: "Pasta fresca con bogavante", desc: "Tagliatelle caseros, bogavante gallego, bisque", precio: "32€" },
+    { name: "Risotto de trufa negra", desc: "Arroz carnaroli, parmesano 24 meses, trufa de Soria", precio: "24", nuevo: true },
+    { name: "Cochinillo confitado", desc: "72h de coccion lenta, pure de manzana, jus de asado", precio: "28" },
+    { name: "Lubina a la sal", desc: "Lubina salvaje, ensalada de hinojo, vinagreta citrica", precio: "26" },
+    { name: "Pasta fresca con bogavante", desc: "Tagliatelle caseros, bogavante gallego, bisque", precio: "32" },
   ],
   postres: [
-    { name: "Coulant de chocolate", desc: "Valrhona 70%, helado de vainilla bourbon, caramelo salado", precio: "9€" },
-    { name: "Tarta de queso al horno", desc: "Queso manchego curado, mermelada de frutos rojos", precio: "8€" },
-    { name: "Tiramisú de la casa", desc: "Mascarpone, café espresso, amaretto", precio: "8€" },
+    { name: "Coulant de chocolate", desc: "Valrhona 70%, helado de vainilla bourbon, caramelo salado", precio: "9" },
+    { name: "Tarta de queso al horno", desc: "Queso manchego curado, mermelada de frutos rojos", precio: "8" },
+    { name: "Tiramisu de la casa", desc: "Mascarpone, cafe espresso, amaretto", precio: "8" },
   ],
 };
 
@@ -46,7 +53,7 @@ export default function Menu() {
           <div className="text-center mb-16">
             <p className="text-[#FFB547] text-xs font-mono tracking-widest uppercase mb-4">Temporada primavera 2026</p>
             <h1 className="text-5xl font-bold text-white mb-4">Nuestra <span style={{ color: "#FFB547" }}>carta</span></h1>
-            <p className="text-white/50">Producto de temporada, técnica contemporánea. Todos los platos están elaborados con ingredientes frescos del día.</p>
+            <p className="text-white/50">Producto de temporada, tecnica contemporanea.</p>
           </div>
 
           {[
@@ -65,11 +72,13 @@ export default function Menu() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="text-white font-semibold">{p.name}</h3>
-                        {p.nuevo && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#FFB547]/20 text-[#FFB547] font-mono uppercase tracking-widest">Nuevo</span>}
+                        {p.nuevo && (
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#FFB547]/20 text-[#FFB547] font-mono uppercase tracking-widest">Nuevo</span>
+                        )}
                       </div>
                       <p className="text-sm text-white/40">{p.desc}</p>
                     </div>
-                    <div className="text-xl font-bold text-[#FFB547] shrink-0">{p.precio}</div>
+                    <div className="text-xl font-bold text-[#FFB547] shrink-0">{p.precio}€</div>
                   </div>
                 ))}
               </div>
@@ -77,9 +86,9 @@ export default function Menu() {
           ))}
 
           <div className="text-center p-8 rounded-2xl border border-[#FFB547]/20 bg-[#111008]">
-            <p className="text-white/50 text-sm mb-6">Menú degustación disponible para grupos de 4 o más personas · Aviso previo 48h</p>
+            <p className="text-white/50 text-sm mb-6">Menu degustacion disponible para grupos de 4 o mas personas</p>
             <Link href="/counter/reservas" className="inline-flex px-8 py-4 rounded-full bg-[#FFB547] text-black font-bold hover:bg-[#ffc76a] transition-all hover:scale-105">
-              Reservar mesa →
+              Reservar mesa
             </Link>
           </div>
         </div>
