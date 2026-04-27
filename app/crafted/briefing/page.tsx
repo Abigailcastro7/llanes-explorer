@@ -89,7 +89,7 @@ export default function Briefing() {
                       className="w-full p-5 text-sm font-light outline-none resize-none"
                       rows={6}
                       style={{ backgroundColor: "transparent", border: "1px solid rgba(240,237,232,0.12)", color: "#F0EDE8", fontFamily: "Georgia, serif", lineHeight: "1.8" }}
-                      placeholderStyle={{ color: "rgba(240,237,232,0.2)" }} />
+                       />
                   </div>
                   <div className="flex gap-3">
                     <button onClick={() => setStep(1)} className="px-8 py-4 text-[10px] tracking-[0.3em] uppercase" style={{ border: "1px solid rgba(240,237,232,0.12)", color: "rgba(240,237,232,0.4)", fontFamily: "Helvetica, sans-serif" }}>Atras</button>
