@@ -2,49 +2,17 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const respuestasIA: Record<string, string> = {
-  default: "Entendido. Basandome en los documentos de tu empresa, aqui esta lo que encontre:
+const r1 = "Entendido. Basandome en los documentos de tu empresa, aqui esta lo que encontre: He revisado los archivos relevantes en Google Drive y los mensajes de Slack de los ultimos 7 dias. Te puedo dar un resumen detallado o profundizar en algun aspecto especifico.";
+const r2 = "Draft listo para revision. Asunto: Actualizacion importante del equipo. Hola equipo, queria compartir los puntos clave de esta semana... Quieres que lo ajuste en tono o longitud?";
+const r3 = "Encontre 3 informes recientes en Google Drive: 1. Q1_2026_Resultados.pdf (hace 2 dias) 2. Marketing_Marzo.xlsx (hace 5 dias) 3. Ventas_Semanal.pptx (hace 1 semana). Cual quieres que resuma?";
+const r4 = "Revise tu calendario. Tienes disponibilidad: Martes 29 Abr: 10:00-11:00 o 16:00-17:00. Miercoles 30 Abr: Todo el dia libre. Quieres que programe la reunion automaticamente?";
+const r5 = "Revise los mensajes de Slack de las ultimas 48h. Puntos importantes: Maria comento sobre el retraso en el proyecto X. Carlos pregunto por el presupuesto Q2. 3 mensajes sin responder en ventas. Quieres que redacte respuestas?";
 
-He revisado los archivos relevantes en Google Drive y los mensajes de Slack de los ultimos 7 dias. Te puedo dar un resumen detallado o profundizar en algun aspecto especifico.",
-  email: "Draft listo para revision:
-
-Asunto: Actualizacion importante del equipo
-
-Hola equipo,
-
-Queria compartir los puntos clave de esta semana...
-
-¿Quieres que lo ajuste en tono o longitud?",
-  informe: "Encontre 3 informes recientes en Google Drive:
-
-1. Q1_2026_Resultados.pdf (hace 2 dias)
-2. Marketing_Marzo.xlsx (hace 5 dias)
-3. Ventas_Semanal.pptx (hace 1 semana)
-
-¿Cual quieres que resuma?",
-  reunion: "Revise tu calendario. Tienes disponibilidad:
-
-• Martes 29 Abr: 10:00-11:00 o 16:00-17:00
-• Miercoles 30 Abr: Todo el dia libre
-• Jueves 1 May: 9:00-10:00
-
-¿Quieres que programe la reunion automaticamente?",
-  slack: "Revise los mensajes de Slack de las ultimas 48h. Puntos importantes:
-
-• Maria comento sobre el retraso en el proyecto X
-• Carlos pregunto por el presupuesto Q2
-• 3 mensajes sin responder en #ventas
-
-¿Quieres que redacte respuestas?",
-};
-
-const sugerencias = ["Resume el informe de ayer", "Redacta un email al equipo", "¿Que reuniones tengo esta semana?", "Resumen de Slack de hoy"];
+const sugerencias = ["Resume el informe de ayer", "Redacta un email al equipo", "Que reuniones tengo esta semana?", "Resumen de Slack de hoy"];
 
 export default function Chat() {
   const [mensajes, setMensajes] = useState([
-    { tipo: "quill", msg: "Hola! Soy Quill. Estoy conectado a tu Google Drive, Gmail, Slack y Calendario.
-
-¿En que puedo ayudarte hoy?", fuente: "" }
+    { tipo: "quill", msg: "Hola! Soy Quill. Estoy conectado a tu Google Drive, Gmail, Slack y Calendario. En que puedo ayudarte hoy?", fuente: "" }
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -57,11 +25,11 @@ export default function Chat() {
     setLoading(true);
     setTimeout(() => {
       const lower = msg.toLowerCase();
-      let resp = respuestasIA.default;
-      if (lower.includes("email") || lower.includes("correo")) resp = respuestasIA.email;
-      if (lower.includes("informe") || lower.includes("reporte")) resp = respuestasIA.informe;
-      if (lower.includes("reunion") || lower.includes("calendario")) resp = respuestasIA.reunion;
-      if (lower.includes("slack") || lower.includes("mensaje")) resp = respuestasIA.slack;
+      let resp = r1;
+      if (lower.includes("email") || lower.includes("correo")) resp = r2;
+      if (lower.includes("informe") || lower.includes("reporte")) resp = r3;
+      if (lower.includes("reunion") || lower.includes("calendario")) resp = r4;
+      if (lower.includes("slack") || lower.includes("mensaje")) resp = r5;
       const fuentes = ["Google Drive", "Gmail", "Slack", "Calendar"];
       const fuente = fuentes[Math.floor(Math.random() * fuentes.length)];
       setMensajes(prev => [...prev, { tipo: "quill", msg: resp, fuente }]);
@@ -81,7 +49,7 @@ export default function Chat() {
           </Link>
           <div className="flex items-center gap-2 text-xs font-mono">
             <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: "#64DC96" }} />
-            <span style={{ color: "#64DC96" }}>Conectado · Drive · Gmail · Slack · Calendar</span>
+            <span style={{ color: "#64DC96" }}>Conectado a Drive, Gmail, Slack, Calendar</span>
           </div>
           <Link href="/quill/premium" className="px-4 py-2 rounded-full text-xs font-semibold" style={{ backgroundColor: "#64DC96", color: "#080810" }}>Premium</Link>
         </nav>
@@ -98,7 +66,7 @@ export default function Chat() {
                   </div>
                 )}
                 <div>
-                  <div className="px-4 py-3 rounded-2xl text-sm leading-relaxed whitespace-pre-line"
+                  <div className="px-4 py-3 rounded-2xl text-sm leading-relaxed"
                     style={{
                       backgroundColor: m.tipo === "quill" ? "rgba(255,255,255,0.03)" : "rgba(100,220,150,0.08)",
                       color: "rgba(232,232,240,0.8)",
@@ -108,7 +76,9 @@ export default function Chat() {
                     {m.msg}
                   </div>
                   {m.fuente && (
-                    <div className="mt-1.5 ml-1 text-[10px] font-mono" style={{ color: "rgba(100,220,150,0.45)" }}>↗ {m.fuente}</div>
+                    <div className="mt-1.5 ml-1 text-[10px] font-mono" style={{ color: "rgba(100,220,150,0.45)" }}>
+                      {"-> " + m.fuente}
+                    </div>
                   )}
                 </div>
               </div>
@@ -131,7 +101,7 @@ export default function Chat() {
             <div className="flex flex-wrap gap-2 mb-3">
               {sugerencias.map((s) => (
                 <button key={s} onClick={() => handleSend(s)}
-                  className="px-3 py-1.5 rounded-full text-xs transition-all hover:border-opacity-40"
+                  className="px-3 py-1.5 rounded-full text-xs transition-all"
                   style={{ backgroundColor: "rgba(255,255,255,0.03)", color: "rgba(232,232,240,0.4)", border: "1px solid rgba(255,255,255,0.07)" }}>
                   {s}
                 </button>

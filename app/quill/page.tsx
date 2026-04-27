@@ -78,13 +78,9 @@ export default function Quill() {
             <div className="p-5 flex flex-col gap-4">
               {[
                 { tipo: "user", msg: "Resume el informe trimestral que subio Maria ayer" },
-                { tipo: "quill", msg: "Encontre el archivo 'Q1_2026_Resultados.pdf' en Google Drive (subido hace 18h por Maria Lopez).
-
-Resumen: Revenue +23% vs Q1 2025. Los mercados de Madrid y Barcelona superaron objetivos. Pendiente: revision de costes operativos en zona norte.", fuente: "Google Drive · Q1_2026_Resultados.pdf" },
+                { tipo: "quill", msg: "Encontre Q1_2026_Resultados.pdf en Drive. Revenue +23% vs Q1 2025. Madrid y Barcelona superaron objetivos. Pendiente: revision costes zona norte.", fuente: "Google Drive · Q1_2026_Resultados.pdf" },
                 { tipo: "user", msg: "Redacta un email a todo el equipo con los puntos clave" },
-                { tipo: "quill", msg: "Draft listo. Tono: profesional y motivador. Longitud: 150 palabras. Destinatarios sugeridos: equipo@empresa.com (14 personas segun Slack).
-
-¿Lo envio ahora o prefieres revisarlo primero?", fuente: "Gmail · Slack" },
+                { tipo: "quill", msg: "Draft listo. Tono profesional, 150 palabras. Destinatarios: equipo@empresa.com (14 personas segun Slack). Lo envio ahora o prefieres revisarlo?", fuente: "Gmail · Slack" },
               ].map((m, i) => (
                 <div key={i} className={"flex " + (m.tipo === "user" ? "justify-end" : "justify-start")}>
                   <div className="max-w-sm">
