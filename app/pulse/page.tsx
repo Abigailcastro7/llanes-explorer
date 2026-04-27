@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-function Ring({ size, strokeWidth, progress, color, label, value }) {
+function Ring({ size, strokeWidth, progress, color, label, value }: { size: number; strokeWidth: number; progress: number; color: string; label: string; value: string }) {
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
   const offset = circumference - (progress / 100) * circumference;
