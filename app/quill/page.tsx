@@ -1,5 +1,14 @@
 import Link from "next/link";
 
+const casos = [
+  { icon: "📂", titulo: "Busca en tus archivos", ejemplo: "Resume el contrato que firmo Ana la semana pasada", resultado: "Encontre 3 archivos relacionados en Drive. El contrato mas reciente es Contrato_Ana_Marketing.pdf (firmado hace 5 dias). Puntos clave: duracion 12 meses, valor 8.500 euros, clausula de renovacion automatica." },
+  { icon: "📧", titulo: "Redacta y envia emails", ejemplo: "Escribe un email de seguimiento al cliente Grupo Solar", resultado: "Draft listo. Asunto: Seguimiento propuesta Grupo Solar. Tono: profesional y cercano. Incluye los puntos pendientes de vuestra ultima reunion del 22 de abril. Envio ahora?" },
+  { icon: "📅", titulo: "Gestiona tu agenda", ejemplo: "Programa una reunion con el equipo de ventas esta semana", resultado: "Revise los calendarios del equipo. Mejor momento: Jueves 1 Mayo a las 10:00 — todos disponibles. Sala Madrid libre. Creo el evento y envio invitaciones?" },
+  { icon: "💬", titulo: "Resume Slack y Teams", ejemplo: "Que decidi perderme en el canal de proyectos hoy", resultado: "En el canal proyectos hoy: Carlos subio el brief del cliente Zara. Maria comento 3 cambios en el diseño. Hay 2 preguntas sin responder dirigidas a ti. Quieres que redacte las respuestas?" },
+  { icon: "📊", titulo: "Analiza datos", ejemplo: "Como van las ventas de este mes vs el anterior", ejemplo2: "", resultado: "Segun la hoja de ventas en Google Sheets: Abril 2026 = 48.200 euros. Marzo 2026 = 41.800 euros. Crecimiento: +15.3%. Las categorias que mas crecieron son Software y Consultoria." },
+  { icon: "✅", titulo: "Crea y asigna tareas", ejemplo: "Crea una tarea en Notion para revisar el presupuesto Q2", resultado: "Tarea creada en Notion: Revision presupuesto Q2. Asignada a: tu usuario. Fecha limite sugerida: viernes 3 Mayo. La agrego al tablero de Finanzas?" },
+];
+
 export default function Quill() {
   return (
     <main style={{ backgroundColor: "#080810", color: "#E8E8F0", fontFamily: "system-ui, -apple-system, sans-serif" }}>
@@ -44,12 +53,12 @@ export default function Quill() {
               <span style={{ color: "rgba(232,232,240,0.2)" }}>tu empresa.</span>
             </h1>
             <p className="text-lg mb-10 leading-relaxed" style={{ color: "rgba(232,232,240,0.4)", maxWidth: "440px", lineHeight: "1.8" }}>
-              Conecta Quill a tus documentos, emails, calendarios y herramientas. Respuestas con contexto real. No respuestas genericas.
+              Conecta Quill a tus documentos, emails, calendarios y herramientas. Respuestas con contexto real de tu empresa. No respuestas genericas.
             </p>
             <div className="flex gap-4 mb-16">
               <Link href="/quill/chat" className="px-8 py-4 rounded-full font-semibold text-sm transition-all hover:scale-105"
                 style={{ backgroundColor: "#64DC96", color: "#080810" }}>
-                Probar gratis →
+                Probar gratis
               </Link>
               <Link href="/quill/integraciones" className="px-8 py-4 rounded-full font-semibold text-sm transition-all"
                 style={{ border: "1px solid rgba(232,232,240,0.1)", color: "rgba(232,232,240,0.5)" }}>
@@ -66,25 +75,25 @@ export default function Quill() {
             </div>
           </div>
 
-          {/* Chat preview animado */}
+          {/* Chat preview */}
           <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
             <div className="p-4 flex items-center justify-between" style={{ borderBottom: "1px solid rgba(255,255,255,0.05)", backgroundColor: "rgba(255,255,255,0.02)" }}>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "#64DC96" }} />
-                <span className="text-xs font-mono" style={{ color: "rgba(232,232,240,0.4)" }}>Quill IA · Conectado a Google Drive, Gmail, Slack</span>
+                <span className="text-xs font-mono" style={{ color: "rgba(232,232,240,0.4)" }}>Quill · Drive · Gmail · Slack · Calendar · Notion</span>
               </div>
               <span className="text-[10px] font-mono px-2 py-0.5 rounded" style={{ backgroundColor: "rgba(100,220,150,0.1)", color: "#64DC96" }}>EN LINEA</span>
             </div>
             <div className="p-5 flex flex-col gap-4">
               {[
-                { tipo: "user", msg: "Resume el informe trimestral que subio Maria ayer" },
-                { tipo: "quill", msg: "Encontre Q1_2026_Resultados.pdf en Drive. Revenue +23% vs Q1 2025. Madrid y Barcelona superaron objetivos. Pendiente: revision costes zona norte.", fuente: "Google Drive · Q1_2026_Resultados.pdf" },
-                { tipo: "user", msg: "Redacta un email a todo el equipo con los puntos clave" },
+                { tipo: "user", msg: "Resume el informe trimestral que subio Maria ayer", fuente: "" },
+                { tipo: "quill", msg: "Encontre Q1_2026_Resultados.pdf en Drive (subido hace 18h). Revenue +23% vs Q1 2025. Madrid y Barcelona superaron objetivos. Pendiente: revision de costes en zona norte.", fuente: "Google Drive" },
+                { tipo: "user", msg: "Redacta un email al equipo con los puntos clave", fuente: "" },
                 { tipo: "quill", msg: "Draft listo. Tono profesional, 150 palabras. Destinatarios: equipo@empresa.com (14 personas segun Slack). Lo envio ahora o prefieres revisarlo?", fuente: "Gmail · Slack" },
               ].map((m, i) => (
                 <div key={i} className={"flex " + (m.tipo === "user" ? "justify-end" : "justify-start")}>
                   <div className="max-w-sm">
-                    <div className="px-4 py-3 rounded-2xl text-sm leading-relaxed whitespace-pre-line"
+                    <div className="px-4 py-3 rounded-2xl text-sm leading-relaxed"
                       style={{
                         backgroundColor: m.tipo === "quill" ? "rgba(100,220,150,0.06)" : "rgba(232,232,240,0.06)",
                         color: "rgba(232,232,240,0.75)",
@@ -94,7 +103,7 @@ export default function Quill() {
                     </div>
                     {m.fuente && (
                       <div className="mt-1.5 ml-1 text-[10px] font-mono" style={{ color: "rgba(100,220,150,0.5)" }}>
-                        ↗ {m.fuente}
+                        {"-> " + m.fuente}
                       </div>
                     )}
                   </div>
@@ -106,32 +115,42 @@ export default function Quill() {
                 Pregunta algo a Quill...
               </div>
               <Link href="/quill/chat" className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all hover:scale-105"
-                style={{ backgroundColor: "#64DC96", color: "#080810" }}>→</Link>
+                style={{ backgroundColor: "#64DC96", color: "#080810" }}>
+                {">"}
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features */}
+      {/* Lo que puede hacer Quill */}
       <section className="py-24 px-8" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <p className="text-xs tracking-[0.3em] uppercase mb-4 font-mono" style={{ color: "#64DC96" }}>Por que Quill</p>
+          <div className="text-center mb-16">
+            <p className="text-xs tracking-[0.3em] uppercase mb-4 font-mono" style={{ color: "#64DC96" }}>Capacidades</p>
             <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ letterSpacing: "-0.03em" }}>
-              No es un chatbot.<br /><span style={{ color: "rgba(232,232,240,0.2)" }}>Es tu equipo de IA.</span>
+              Todo lo que Quill<br /><span style={{ color: "rgba(232,232,240,0.2)" }}>puede hacer por ti.</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              { icon: "📂", titulo: "Memoria real", desc: "Quill lee tus documentos, emails y conversaciones de Slack. Responde con contexto real de tu empresa, no respuestas genericas.", acento: true },
-              { icon: "⚡", titulo: "Accion directa", desc: "No solo responde — actua. Redacta emails, crea tareas en Notion, actualiza hojas de calculo. Todo desde el chat.", acento: false },
-              { icon: "🔒", titulo: "Privacidad total", desc: "Tus datos nunca se usan para entrenar modelos. Servidor dedicado. Cumplimiento GDPR. Datos solo tuyos.", acento: false },
-            ].map((f) => (
-              <div key={f.titulo} className="p-8 rounded-2xl transition-all hover:-translate-y-1"
-                style={{ backgroundColor: f.acento ? "rgba(100,220,150,0.04)" : "rgba(255,255,255,0.02)", border: f.acento ? "1px solid rgba(100,220,150,0.12)" : "1px solid rgba(255,255,255,0.05)" }}>
-                <div className="text-3xl mb-5">{f.icon}</div>
-                <h3 className="text-xl font-bold mb-3" style={{ letterSpacing: "-0.02em" }}>{f.titulo}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(232,232,240,0.35)" }}>{f.desc}</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {casos.map((c) => (
+              <div key={c.titulo} className="p-6 rounded-2xl transition-all hover:-translate-y-0.5"
+                style={{ backgroundColor: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl mt-0.5">{c.icon}</div>
+                  <div className="flex-1">
+                    <h3 className="font-bold mb-4 text-lg" style={{ letterSpacing: "-0.02em" }}>{c.titulo}</h3>
+                    <div className="p-3 rounded-xl mb-3" style={{ backgroundColor: "rgba(232,232,240,0.04)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                      <p className="text-xs font-mono mb-1" style={{ color: "rgba(232,232,240,0.25)" }}>Tu pregunta:</p>
+                      <p className="text-sm italic" style={{ color: "rgba(232,232,240,0.55)" }}>"{c.ejemplo}"</p>
+                    </div>
+                    <div className="p-3 rounded-xl" style={{ backgroundColor: "rgba(100,220,150,0.04)", border: "1px solid rgba(100,220,150,0.1)" }}>
+                      <p className="text-xs font-mono mb-1" style={{ color: "#64DC96", opacity: 0.6 }}>Quill responde:</p>
+                      <p className="text-sm" style={{ color: "rgba(232,232,240,0.6)" }}>{c.resultado}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -146,7 +165,7 @@ export default function Quill() {
               <p className="text-xs tracking-[0.3em] uppercase mb-3 font-mono" style={{ color: "#64DC96" }}>Conectado a todo</p>
               <h2 className="text-4xl font-bold" style={{ letterSpacing: "-0.03em" }}>60+ integraciones</h2>
             </div>
-            <Link href="/quill/integraciones" className="text-sm" style={{ color: "rgba(232,232,240,0.3)" }}>Ver todas →</Link>
+            <Link href="/quill/integraciones" className="text-sm" style={{ color: "rgba(232,232,240,0.3)" }}>Ver todas</Link>
           </div>
           <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
             {[
@@ -185,7 +204,7 @@ export default function Quill() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/quill/chat" className="px-10 py-4 rounded-full font-semibold transition-all hover:scale-105"
               style={{ backgroundColor: "#64DC96", color: "#080810" }}>
-              Probar gratis →
+              Probar gratis
             </Link>
             <Link href="/quill/premium" className="px-10 py-4 rounded-full font-semibold transition-all"
               style={{ border: "1px solid rgba(232,232,240,0.1)", color: "rgba(232,232,240,0.4)" }}>
