@@ -1,15 +1,15 @@
 import Link from "next/link";
 
 const destinos = [
-  { name: "Kyoto, Japón", tag: "Cultural", emoji: "⛩️", rating: "4.9", price: "desde €1,200", duration: "7-10 días", desc: "Templos milenarios, geishas y cerezos en flor." },
-  { name: "Patagonia, Chile", tag: "Aventura", emoji: "🏔️", rating: "4.8", price: "desde €2,100", duration: "10-14 días", desc: "Torres del Paine, glaciares y naturaleza salvaje." },
-  { name: "Santorini, Grecia", tag: "Premium", emoji: "🌊", rating: "4.9", price: "desde €900", duration: "5-7 días", desc: "Pueblos blancos, atardeceres únicos y gastronomía." },
-  { name: "Marrakech, Marruecos", tag: "Exótico", emoji: "🕌", rating: "4.7", price: "desde €650", duration: "4-6 días", desc: "Medinas, souks y el desierto del Sahara." },
-  { name: "Bali, Indonesia", tag: "Espiritual", emoji: "🌺", rating: "4.8", price: "desde €800", duration: "7-12 días", desc: "Templos, arrozales y cultura hindú balinesa." },
-  { name: "Islandia", tag: "Aventura", emoji: "🌋", rating: "4.9", price: "desde €1,500", duration: "7-10 días", desc: "Aurora boreal, volcanes y cascadas épicas." },
-  { name: "Toscana, Italia", tag: "Cultural", emoji: "🍷", rating: "4.8", price: "desde €750", duration: "5-8 días", desc: "Viñedos, arte renacentista y cocina italiana." },
-  { name: "Tailandia", tag: "Popular", emoji: "🏯", rating: "4.7", price: "desde €700", duration: "10-14 días", desc: "Templos, playas y street food increíble." },
-  { name: "Nueva Zelanda", tag: "Aventura", emoji: "🐑", rating: "4.9", price: "desde €2,500", duration: "14-21 días", desc: "Fiordos, hobbiton y deportes extremos." },
+  { name: "Paraguarí", tag: "Naturaleza", emoji: "🌿", rating: "4.9", price: "Destino local", duration: "1-2 días", desc: "Cerros, bosques y saltos de agua. La joya más cercana a Asunción." },
+  { name: "Encarnación", tag: "Verano", emoji: "🏖️", rating: "4.8", price: "Destino local", duration: "2-3 días", desc: "Las mejores playas del río Paraguay, carnaval y gastronomía única." },
+  { name: "Salto Cristal", tag: "Aventura", emoji: "💧", rating: "4.9", price: "Destino local", duration: "1 día", desc: "Uno de los saltos más espectaculares del país. Imperdible." },
+  { name: "Ayolas", tag: "Paraíso", emoji: "🌊", rating: "4.8", price: "Destino local", duration: "2-3 días", desc: "Isla Corateí y sus aguas cristalinas. El verano perfecto." },
+  { name: "Areguá", tag: "Cultural", emoji: "🏡", rating: "4.7", price: "Destino local", duration: "1 día", desc: "El pueblo donde nació Joel. Fresa, artesanía y lago Ypacaraí." },
+  { name: "Itaipu", tag: "Imponente", emoji: "⚡", rating: "4.9", price: "Destino local", duration: "1 día", desc: "La represa más grande del mundo. Una maravilla de la ingeniería." },
+  { name: "Chaco Paraguayo", tag: "Extremo", emoji: "🦁", rating: "4.6", price: "Destino local", duration: "3-5 días", desc: "Fauna salvaje, naturaleza extrema y una experiencia única en el mundo." },
+  { name: "Machu Picchu", tag: "Internacional", emoji: "⛰️", rating: "4.9", price: "desde $800", duration: "5-7 días", desc: "El primer viaje que cambió la vida de Joel. Ruta exclusiva con su guía." },
+  { name: "México", tag: "Internacional", emoji: "🌮", rating: "4.8", price: "desde $700", duration: "7-10 días", desc: "Día de Muertos, cultura y gastronomía. La ruta de Joel." },
 ];
 
 export default function Destinos() {
@@ -19,12 +19,12 @@ export default function Destinos() {
         <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <Link href="/llanes" className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-[#7b5bff] flex items-center justify-center">
-              <span className="text-white font-bold">L</span>
+              <span className="text-lg">🍀</span>
             </div>
             <span className="text-white font-bold">Llanes Explorer</span>
           </Link>
           <div className="hidden md:flex items-center gap-6 text-sm text-white/60">
-            <Link href="/llanes/destinos" className="text-white">Destinos</Link>
+            <Link href="/llanes/destinos" className="text-white font-medium">Destinos</Link>
             <Link href="/llanes/rutas" className="hover:text-white transition-colors">Rutas</Link>
             <Link href="/llanes/premium" className="hover:text-white transition-colors">Premium</Link>
           </div>
@@ -35,8 +35,13 @@ export default function Destinos() {
       <div className="pt-24 pb-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Destinos <span style={{ background: "linear-gradient(90deg, #9477ff, #5dd3ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>curados</span></h1>
-            <p className="text-white/50 text-lg">Lugares seleccionados personalmente por Joel. Cada destino incluye guía, rutas y recomendaciones exclusivas.</p>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#7b5bff]/30 text-[#b094ff] text-xs font-mono tracking-widest uppercase mb-6">
+              🇵🇾 Curados por Joel Llanes
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Destinos <span style={{ background: "linear-gradient(90deg, #9477ff, #5dd3ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>curados</span>
+            </h1>
+            <p className="text-white/50 text-lg">Lugares visitados y recomendados personalmente por Joel. Cada destino incluye guía, tips y las rutas exactas que él recorrió.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
